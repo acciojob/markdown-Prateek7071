@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const MarkdownEditor = () => {
-  // Use a clean trailing newline after your initial text block to ensure subsequent types are separate lines
-  const [markdown, setMarkdown] = useState('# Hello world\n');
+  // Changing this to a double newline forces a markdown block split
+  const [markdown, setMarkdown] = useState('# Hello world\n\n');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const MarkdownEditor = () => {
 
   return (
     <div className="editor-container">
-      {isLoading && <div className="loading" className="loading">Parsing Markdown...</div>}
+      {isLoading && <div className="loading">Parsing Markdown...</div>}
       
       <div className="layout-split">
         {/* Input Area */}
