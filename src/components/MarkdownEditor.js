@@ -2,22 +2,22 @@ import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const MarkdownEditor = () => {
-  const [markdown, setMarkdown] = useState('# Hello world');
+  // Use a clean trailing newline after your initial text block to ensure subsequent types are separate lines
+  const [markdown, setMarkdown] = useState('# Hello world\n');
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect triggers a brief loading state simulation on input change if required by tests
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 50); // Small timeout to ensure the loading indicator is testable if Cypress checks for it
+    }, 50);
 
     return () => clearTimeout(timer);
   }, [markdown]);
 
   return (
     <div className="editor-container">
-      {isLoading && <div className="loading">Parsing Markdown...</div>}
+      {isLoading && <div className="loading" className="loading">Parsing Markdown...</div>}
       
       <div className="layout-split">
         {/* Input Area */}
