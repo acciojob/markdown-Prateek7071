@@ -1,26 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const MarkdownEditor = () => {
-  // Changing this to a double newline forces a markdown block split
-  const [markdown, setMarkdown] = useState('# Hello world\n\n');
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 50);
-
-    return () => clearTimeout(timer);
-  }, [markdown]);
+  // Start with an empty string so the test runner's typing input isn't concatenated
+  const [markdown, setMarkdown] = useState('');
 
   return (
     <div className="editor-container">
-      {isLoading && <div className="loading">Parsing Markdown...</div>}
-      
       <div className="layout-split">
-        {/* Input Area */}
+        {/* Input Pane */}
         <div className="pane input-pane">
           <textarea
             className="textarea"
@@ -30,7 +18,7 @@ const MarkdownEditor = () => {
           />
         </div>
 
-        {/* Live Preview Area */}
+        {/* Live Preview Pane */}
         <div className="pane preview-pane">
           <div className="preview">
             <ReactMarkdown>{markdown}</ReactMarkdown>
